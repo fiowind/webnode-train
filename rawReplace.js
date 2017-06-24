@@ -1,6 +1,6 @@
 /**
  * @file 公共文件打包
- * @author fio(zhoufangxing@baidu.com)
+ * @author fio
  */
 
 'use strict';

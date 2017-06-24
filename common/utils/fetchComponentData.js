@@ -72,7 +72,7 @@ export function read(store, redirectLocation, renderProps, ctx) {
                 global.logger.error('Error:state', err);
             }
 
-            fs.readFile(path.join(__dirname, '../../views/index.app.ejs'), 'utf-8', (err, tmpl) => {
+            fs.readFile(path.join(__dirname, '../../views/index.mobile.ejs'), 'utf-8', (err, tmpl) => {
                 if (err) {
                     reject(err);
                 }
@@ -90,7 +90,7 @@ export function read(store, redirectLocation, renderProps, ctx) {
                 ctx.redirect('/404');
             }
             global.logger.error('[webnode] Cannot get server-render data in fetchComponentData: %j', err);
-            fs.readFile(path.join(__dirname, '../../views/index.app.ejs'), 'utf-8', (readErr, tmpl) => {
+            fs.readFile(path.join(__dirname, '../../views/index.mobile.ejs'), 'utf-8', (readErr, tmpl) => {
                 if (readErr) {
                     reject(readErr);
                 }

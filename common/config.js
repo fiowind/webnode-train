@@ -3,15 +3,8 @@
  * @author fio
  */
 
-exports.defaultTitle = '物管理';
+exports.defaultTitle = '去哪儿培训';
 
-exports.title = '天工物联网';
+exports.title = '去哪儿培训';
 
-exports.appDomain = '/iot2/dm';
-
-exports.vizUrl = {
-    'viz1': '/viz/#/dashboards',
-    'viz2': '/viz/#/datasources'
-};
-
-exports.oldVersion = '/iotdm/#/iotdm/device/list';
+exports.appDomain = '';

@@ -7,8 +7,8 @@
       "instances": 1,
       "env": {
           "NODE_ENV": "production",
-          "NODE_PORT" : "8462",
-          "NODE_CONFIG_DIR": "../conf"
+          "NODE_PORT" : "8103",
+          "NODE_CONFIG_DIR": "./conf"
       },
       "max-memory-restart": "1024M"
     }

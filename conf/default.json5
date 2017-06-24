@@ -1,36 +1,8 @@
 {
-    apiUrl: 'http://nmg02-bce-test10.nmg02.baidu.com:8482',
+    apiUrl: 'http://127.0.0.1:8103',
     logging: {
-        defaultCategory: 'iotdm',
-        defaultLevel: 'debug'
-    },
-    auth: {
-        login: {
-            enabled: true,
-            uri: 'https://login.bcetest.baidu.com'
-        },
-        passport: {
-            hostname: 'nmg01-hpc-w1134.nmg01.baidu.com',
-            port: 8801,
-            apid: 1240
-        },
-        iam: {
-            hostname: 'nmg01-hpc-w1134.nmg01.baidu.com',
-            port: 8357,
-            username: 'console',
-            password: 'console'
-        },
-        sts: {
-            hostname: 'nmg02-bce-test6.nmg02.baidu.com',
-            port: 8586,
-            accessKey: '790b329ee5194aae868c84ce254d2f63',
-            securityKey: '9c3abf49e8ae4523b7cbf43dc07d0b40',
-            roleName: 'IOT_DEFAULT_ROLE'
-        },
-        aksk: {
-            accessKey: '7b852806a751453caa6babd00bbcfaa5',
-            securityKey: '146f895ad3c54552bf2a51721f7304b8'
-        }
+        defaultCategory: 'trace',
+        defaultLevel: 'info'
     },
     backend: {
         market: {

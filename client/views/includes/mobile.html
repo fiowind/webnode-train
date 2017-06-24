@@ -11,7 +11,7 @@
         // 获取window 宽度
         // zepto实现 $(window).width()就是这么干的
         var winWidth = window.innerWidth;
-        doc.documentElement.style.fontSize = (winWidth / 640) * 100 + 'px';
+        doc.documentElement.style.fontSize = winWidth / 25 + 'px';
     }
 
     var evt = 'onorientationchange' in win ? 'orientationchange' : 'resize';
@@ -35,7 +35,7 @@
     setFontSize();
 }(window, document));
 </script>
-<script src="<%= webpackConfig.output.publicPath %>/../static/fastclick.js"></script>
+<script src="https://trace.su.bcebos.com/fastclick.js"></script>
 <script>
 FastClick.attach(document.body);
 </script>

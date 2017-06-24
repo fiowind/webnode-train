@@ -13,7 +13,6 @@ const WebpackMd5Hash = require('webpack-md5-hash');
 const appDomain = require('./common/config').appDomain;
 
 // const timestamp = Math.round(Date.now()/1000)
-const theme = require('./common/theme.js');
 
 module.exports.getConfig = function (environment, timestamp) {
     const webpackconfig = {
