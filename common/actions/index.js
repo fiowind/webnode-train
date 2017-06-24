@@ -29,6 +29,14 @@ export function leavePage() {
     };
 }
 
+export function deleteList() {
+    return function (dispatch) {
+        dispatch({
+            type: ActionTypes.GET_LIST_DELETE
+        });
+    };
+}
+
 export function getHomeData({ctxCookie}) {
     return function (dispatch) {
         dispatch(ajaxLoad());

@@ -30,9 +30,11 @@ const recommend = (state = defaultInitState, action) => {
 const list = (state = defaultInitState, action) => {
     switch (action.type) {
         case ActionTypes.GET_LIST_DATA:
-            return Object.assign({}, state, {data: action.data, loadover: true});
+            return Object.assign({}, state, {data: action.data, loadover: true, load2: false});
         case ActionTypes.GET_PAGE_LEAVE:
-            return Object.assign({}, state, {loadover: false});
+            return Object.assign({}, state, {loadover: false, load2:false});
+        case ActionTypes.GET_LIST_DELETE:
+            return Object.assign({}, state, {data: [], load2: true});
         default:
             return state;
     }

@@ -57,7 +57,9 @@ export function getList(cid, query, ctxCookie = {}) {
     const order = query.order || 'asc';
     const orderby = query.orderby || 'time';
     const keyword = query.keyword ? `&key=${query.keyword}` : '';
-    const url = getUrl(`${Api.list}/${cid}?pageNo=${pageNo}&pageSize=${pageSize}&orderby=${orderby}${keyword}`);
+    const location = query.location ? `&location=${query.location}` : '';
+    const category = query.category ? `&category=${query.category}` : '';
+    const url = getUrl(`${Api.list}/${cid}?pageNo=${pageNo}&pageSize=${pageSize}&orderby=${orderby}${keyword}${location}${category}`);
     return fetch(url, {method: 'get'}, ctxCookie);
 }
 
