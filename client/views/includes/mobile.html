@@ -1,0 +1,41 @@
+<meta name="viewport"
+      content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="full-screen" content="true">
+<meta name="screen-orientation" content="portrait">
+<meta name="x5-fullscreen" content="true">
+<meta name="360-fullscreen" content="true">
+<script>
+!(function (win, doc) {
+    function setFontSize() {
+        // 获取window 宽度
+        // zepto实现 $(window).width()就是这么干的
+        var winWidth = window.innerWidth;
+        doc.documentElement.style.fontSize = (winWidth / 640) * 100 + 'px';
+    }
+
+    var evt = 'onorientationchange' in win ? 'orientationchange' : 'resize';
+    var timer = null;
+
+    win.addEventListener(evt, function () {
+        clearTimeout(timer);
+
+        timer = setTimeout(setFontSize, 300);
+    }, false);
+
+    win.addEventListener('pageshow', function (e) {
+        if (e.persisted) {
+            clearTimeout(timer);
+
+            timer = setTimeout(setFontSize, 300);
+        }
+    }, false);
+
+    // 初始化
+    setFontSize();
+}(window, document));
+</script>
+<script src="<%= webpackConfig.output.publicPath %>/../static/fastclick.js"></script>
+<script>
+FastClick.attach(document.body);
+</script>

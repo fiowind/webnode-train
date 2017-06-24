@@ -1,0 +1,62 @@
+<html lang="utf-8">
+
+<head>
+    <title>线下测试</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="keywords" content="">
+    <meta name="viewport"
+          content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="full-screen" content="true" />
+    <meta name="screen-orientation" content="portrait" />
+    <meta name="x5-fullscreen" content="true" />
+    <meta name="360-fullscreen" content="true" />
+    <style>
+        html, body {
+            -ms-touch-action: none;
+            padding: 0;
+            border: 0;
+            margin: 0;
+            height: 100%;
+        }
+    </style>
+    <!--<link rel="stylesheet" type="text/css" href="./static/index.css">-->
+</head>
+
+<body>
+<script>
+    !(function (win, doc) {
+        function setFontSize() {
+            // 获取window 宽度
+            // zepto实现 $(window).width()就是这么干的
+            var winWidth = window.innerWidth;
+
+            doc.documentElement.style.fontSize = winWidth / 25 + 'px';
+        }
+
+        var evt = 'onorientationchange' in win ? 'orientationchange' : 'resize';
+
+        var timer = null;
+
+        win.addEventListener(evt, function () {
+            clearTimeout(timer);
+
+            timer = setTimeout(setFontSize, 300);
+        }, false);
+
+        // 初始化
+        setFontSize();
+
+    }(window, document));
+</script>
+<div class="container"></div>
+</body>
+<script src="./fastclick.js"></script>
+<script src="./index.bundle.js"></script>
+<script>
+    FastClick.attach(document.body);
+    window.dr = function () {
+    }
+</script>
+</html>

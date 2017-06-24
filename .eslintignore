@@ -1,0 +1,6 @@
+/static/
+/node_modules/
+/dist/
+/views/
+/client/static/
+/logs/

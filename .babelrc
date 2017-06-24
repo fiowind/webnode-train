@@ -1,0 +1,6 @@
+{
+  presets: [ "eslatest-node6", "stage-0", "react"],
+  plugins: [
+    "transform-object-rest-spread"
+  ]
+}

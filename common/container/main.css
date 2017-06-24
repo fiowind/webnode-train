@@ -1,0 +1,12 @@
+.container {
+    min-height: 100vh;
+    background: #fff;
+    margin-top: 3.3rem;
+}
+
+.header {
+    font-size: 16px;
+    line-height: 54px;
+    border-bottom: 1px solid #eee;
+    padding-left: 20px;
+}

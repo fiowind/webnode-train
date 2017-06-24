@@ -1,0 +1,2 @@
+VERSION="1.0.0"
+BUILD_SUBMITTER -e UBUNTU -m baidu/bce-console/bce-console-r-iotdm -u . -c "cd baidu/bce-console/bce-console-r-iotdm && sh build.sh -q"

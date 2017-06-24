@@ -1,0 +1,16 @@
+{
+  apps: [
+    {
+      "name": "webnode_iotdm",
+      "script": "startup.sh",
+      "exec_mode": "fork",
+      "instances": 1,
+      "env": {
+          "NODE_ENV": "production",
+          "NODE_PORT" : "8462",
+          "NODE_CONFIG_DIR": "../conf"
+      },
+      "max-memory-restart": "1024M"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+.header {
+    height: 3.3rem;
+    background: #4ebbc4;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    color: #fff;
+    line-height: 3.3rem;
+    text-align: center;
+    padding: 0 .8rem;
+}
+
+.location {
+    position: absolute;
+    left: .8rem;
+}
+
+.title {
+    font-size: 19px;
+}
+
+.icon {
+    position: absolute;
+    right: .8rem;
+}
+
+.icon:before {
+    font-size: 19px;
+    line-height: 3.3rem;
+}

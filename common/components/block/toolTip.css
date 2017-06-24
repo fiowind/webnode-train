@@ -1,0 +1,42 @@
+.tag {
+    color: #fff;
+    width: 204px;
+    height: 42px;
+    margin: 0 10px 0 10px;
+    border: 1px solid #09F;
+    position: relative;
+    background-color: #108CEE;
+}
+
+.tag:before,
+.tag:after {
+    content: "";
+    display: block;
+    border-width: 8px;
+    position: absolute;
+    bottom: -16px;
+    left: 20px;
+    border-style: solid dashed dashed;
+    border-color: #108CEE transparent transparent;
+    font-size: 0;
+    line-height: 0;
+}
+
+.content {
+    height: 40px;
+}
+
+.content a {
+    margin-left: 40px;
+}
+
+.delete {
+    position: relative;
+    right: 35px;
+    color: #fff;
+    float: right;
+}
+
+.delete:hover {
+    color: #108CEE;
+}

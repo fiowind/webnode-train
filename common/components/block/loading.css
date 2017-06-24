@@ -1,0 +1,48 @@
+.loadingCeter {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    flex: 0 1 auto;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 25%;
+    max-width: 25%;
+    height: 200px;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.loadingCenterAbsolute > div {
+    background-color: #999;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    margin: 2px;
+    animation-fill-mode: both;
+    display: inline-block;
+}
+
+.loadingCenterAbsolute > div:nth-child(1) {
+    animation: scale .75s .12s infinite cubic-bezier(.2, .68, .18, 1.08);
+}
+
+.loadingCenterAbsolute > div:nth-child(2) {
+    animation: scale .75s .24s infinite cubic-bezier(.2, .68, .18, 1.08);
+}
+
+.loadingCenterAbsolute > div:nth-child(3) {
+    animation: scale .75s .36s infinite cubic-bezier(.2, .68, .18, 1.08);
+}
+
+@keyframes scale {
+    30% {
+        transform: scale(.3);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

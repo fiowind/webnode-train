@@ -1,0 +1,21 @@
+.ant-menu-dark,
+.ant-menu-dark .ant-menu-inline.ant-menu-sub {
+    background: #15243B;
+}
+
+.ant-menu-vertical .ant-menu-item, .ant-menu-inline .ant-menu-item, .ant-menu-vertical .ant-menu-submenu-title, .ant-menu-inline .ant-menu-submenu-title {
+    font-size: 14px;
+}
+
+.ant-form-item-label {
+    text-align: left!important;
+}
+
+.ant-tabs-nav-wrap {
+    line-height: 30px;
+}
+
+.ant-table-small .ant-table-tbody>tr>td {
+    padding: 15px 8px;
+    line-height: 15px;
+}
