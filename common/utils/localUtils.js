@@ -1,5 +1,5 @@
 /**
- * @file common/util/mktUtils.js 云市场业务相关公共代码封装
+ * @file common/util/LocalUtils.js 业务相关公共代码封装
  * @author fio
  */
 
@@ -25,6 +25,19 @@ export function getHTMLTitle(path, store) {
     return defaultTitle;
 }
 
+export function searchToQuery(search) {
+    let query = {};
+    if (search[0] !== '?') {
+        return query;
+    }
+    search.substring(1).split('&').map(item => {
+        if(item !== '') {
+            let result = item.split('=');
+            query[result[0]] = result[1];
+        }
+    })
+    return query;
+}
 
 export function resetAPPHeader(title) {
     if (isBrowser()) {

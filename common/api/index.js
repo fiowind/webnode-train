@@ -46,13 +46,18 @@ export function getHomeRecommend(ctxCookie = {}) {
     return fetch(url, {method: 'get'}, ctxCookie);
 }
 
-export function resetKey(name, ctxCookie = {}) {
-    const url = getUrl(`${Api.accessDetail}/${name}?updateSecretKey`);
-    return fetch(url, {method: 'put'}, ctxCookie);
+export function getListCategory(cid, ctxCookie = {}) {
+    const url = getUrl(`${Api.category}/cid`);
+    return fetch(url, {method: 'get'}, ctxCookie);
 }
 
-export function userFirst(ctxCookie = {}) {
-    const url = getUrl(`${Api.userFirst}?new`);
+export function getList(cid, query, ctxCookie = {}) {
+    const pageNo = query.pageNo || 1;
+    const pageSize = query.pageSize || 15;
+    const order = query.order || 'asc';
+    const orderby = query.orderby || 'time';
+    const keyword = query.keyword ? `&key=${query.keyword}` : '';
+    const url = getUrl(`${Api.list}/${cid}?pageNo=${pageNo}&pageSize=${pageSize}&orderby=${orderby}${keyword}`);
     return fetch(url, {method: 'get'}, ctxCookie);
 }
 

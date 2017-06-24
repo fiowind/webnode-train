@@ -33,7 +33,6 @@ class Home extends Component {
 
     render() {
         const props = this.props;
-        console.log(props);
         const content = props.loadover ?
                     <div className={styles.container}>
                       <Navigation />

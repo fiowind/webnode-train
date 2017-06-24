@@ -15,10 +15,18 @@ if (typeof require.ensure !== 'function') {
 export const routes = {
     path: '/',
     component: App,
+    childRoutes: [{
+        path: 'list/:cid',
+        component: require('../container/List')
+    },
+    {
+        path: 'detail/:pid',
+        component: require('../container/Detail')
+    }],
     getIndexRoute(partialNextState, callback) {
         require.ensure([], require => {
             callback(null, {
-                component: Home
+                component: require('../container/Home')
             });
         });
     }

@@ -1,0 +1,37 @@
+.item {
+    height: 6rem;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    position: relative;
+    padding: 1rem 15px;
+}
+
+.item img {
+    width: 6rem;
+    height: 4rem;
+    float: left;
+}
+
+.item .content {
+    float: left;
+    margin-left: .5rem;
+    color: #3a3a3a;
+}
+
+.score {
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 10px;
+}
+
+.item button {
+    position: absolute;
+    bottom: 1rem;
+    right: 15px;
+    line-height: 25px;
+    padding: 0 8px;
+    color: #fff;
+    border-radius: 5px;
+    background: #4ebbc4;
+    font-size: 13px;
+}

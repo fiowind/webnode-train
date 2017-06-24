@@ -27,6 +27,28 @@ const recommend = (state = defaultInitState, action) => {
     }
 };
 
+const list = (state = defaultInitState, action) => {
+    switch (action.type) {
+        case ActionTypes.GET_LIST_DATA:
+            return Object.assign({}, state, {data: action.data, loadover: true});
+        case ActionTypes.GET_PAGE_LEAVE:
+            return Object.assign({}, state, {loadover: false});
+        default:
+            return state;
+    }
+};
+
+const category = (state = defaultInitState, action) => {
+    switch (action.type) {
+        case ActionTypes.GET_CATEGORY_DATA:
+            return Object.assign({}, state, {data: action.data, loadover: true});
+        case ActionTypes.GET_PAGE_LEAVE:
+            return Object.assign({}, state, {loadover: false});
+        default:
+            return state;
+    }
+};
+
 const appState = (state = defaultInitAjaxState, action) => {
     switch (action.type) {
         case ActionTypes.AJAX_FAIL:
@@ -50,8 +72,11 @@ const appState = (state = defaultInitAjaxState, action) => {
 };
 
 
+
 export default combineReducers({
     routing: routerReducer,
     recommend,
+    list,
+    category,
     appState
 });

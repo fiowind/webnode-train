@@ -1,0 +1,40 @@
+.daohang {
+    line-height: 2.5rem;
+    border-bottom: 1px solid #ddd;
+    padding: 0 18px;
+    color: #aaa;
+}
+
+.daohang a {
+    color: #4ebbc4;
+}
+
+.leibie li {
+    display: inline-block;
+    width: 8rem;
+    line-height: 1.6rem;
+    text-align: center;
+    border-right: 1px solid #eee;
+}
+
+.leibie li:last-child {
+    border-right: none;
+}
+
+.leibie {
+    padding: .7rem 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.icon {
+    font-size: 10px;
+    margin-left: 5px;
+}
+
+.category {
+    position: fixed;
+    top: 3.3rem;
+    width: 100vw;
+    z-index: 90;
+    background: #fff;
+}

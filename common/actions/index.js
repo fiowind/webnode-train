@@ -29,7 +29,6 @@ export function leavePage() {
     };
 }
 
-
 export function getHomeData({ctxCookie}) {
     return function (dispatch) {
         dispatch(ajaxLoad());
@@ -42,6 +41,29 @@ export function getHomeData({ctxCookie}) {
     };
 }
 
+export function getListData({cid, query, ctxCookie}) {
+    return function (dispatch) {
+        dispatch(ajaxLoad());
+        return api.getList(cid, query, ctxCookie).then(data => {
+            return handleSuccess(data, dispatch,
+        ActionTypes.GET_LIST_DATA);
+        }).catch(err => {
+            return handleError(err, dispatch);
+        });
+    };
+}
+
+export function getListCategory({cid, ctxCookie}) {
+    return function (dispatch) {
+        dispatch(ajaxLoad());
+        return api.getListCategory(cid, ctxCookie).then(data => {
+            return handleSuccess(data, dispatch,
+        ActionTypes.GET_CATEGORY_DATA);
+        }).catch(err => {
+            return handleError(err, dispatch);
+        });
+    };
+}
 
 // prod
 export function ajaxLoad() {

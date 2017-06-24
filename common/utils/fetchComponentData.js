@@ -13,7 +13,7 @@ import util from 'util';
 import {renderToString} from 'react-dom/server';
 import {Provider} from 'react-redux';
 import {RouterContext} from 'react-router';
-import {getHTMLTitle} from '../utils/iotUtils';
+import {getHTMLTitle} from '../utils/localUtils';
 
 export function fetchComponentData(dispatch, getState, components, params, query, cookieText) {
     global.logger.debug('Will fetchComponentData');

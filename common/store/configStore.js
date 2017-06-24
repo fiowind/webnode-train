@@ -4,7 +4,7 @@
  */
 import {createStore, applyMiddleware} from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import {getHTMLTitle, resetAPPHeader} from '../utils/iotUtils';
+import {getHTMLTitle, resetAPPHeader} from '../utils/localUtils';
 import {isBrowser, captureException} from '../utils/commonUtils';
 import {defaultTitle} from '../config';
 import rootReducer from '../reducers/index';
