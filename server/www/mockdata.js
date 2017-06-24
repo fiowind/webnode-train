@@ -17,30 +17,30 @@ module.exports = {
         "recommend": [
             {
                 "cid": 3,
-                "name": '热门课程',
+                "name": '附近培训',
                 "list": [{
                     img: 'http://sh.jiaoyubao.cn/template/temp_home/jyb/images/ad-focus03.jpg',
-                    title: '热门课程1',
+                    title: '附近培训1',
                     score: 9.4,
                     pid: 232
                 }, {
                     img: 'http://sh.jiaoyubao.cn/template/temp_home/jyb/images/ad-focus03.jpg',
-                    title: '热门课程2',
+                    title: '附近培训2',
                     score: 9.4,
                     pid: 232
                 }, {
                     img: 'http://sh.jiaoyubao.cn/template/temp_home/jyb/images/ad-focus03.jpg',
-                    title: '热门课程3',
+                    title: '附近培训3',
                     score: 9.4,
                     pid: 232
                 }, {
                     img: 'http://sh.jiaoyubao.cn/template/temp_home/jyb/images/ad-focus03.jpg',
-                    title: '热门课程4',
+                    title: '附近培训4',
                     score: 9.4,
                     pid: 232
                 }, {
                     img: 'http://sh.jiaoyubao.cn/template/temp_home/jyb/images/ad-focus03.jpg',
-                    title: '热门课程5',
+                    title: '附近培训5',
                     score: 9.4,
                     pid: 232
                 }]
