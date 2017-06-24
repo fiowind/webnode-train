@@ -11,6 +11,7 @@ import {getHomeData} from '../actions';
 import Loading from '../components/block/Loading';
 import Navigation from '../components/education/Navigation'
 import Slide from '../components/education/Slide'
+import Recommend from '../components/education/Recommend'
 
 class Home extends Component {
     constructor(props) {
@@ -37,6 +38,9 @@ class Home extends Component {
                     <div className={styles.container}>
                       <Navigation />
                       <Slide items={props.data.slide}/>
+                      {props.data.recommend.map((item, index) =>
+                        <Recommend recommend={item} key={index}/>
+                      )}
                     </div>: <Loading />
         return (
           <div>

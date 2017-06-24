@@ -3,6 +3,7 @@
     background: #fff;
     max-height: 300px;
     padding: 18px .8rem;
+    padding-bottom: 0;
 }
 
 .navItem {
