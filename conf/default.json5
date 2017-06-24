@@ -3,11 +3,5 @@
     logging: {
         defaultCategory: 'trace',
         defaultLevel: 'info'
-    },
-    backend: {
-        market: {
-            hostname: '10.100.114.128',
-            port: 8078
-        }
     }
 }
