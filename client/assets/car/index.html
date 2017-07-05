@@ -1,11 +1,75 @@
-<!DOCTYPE html> <html> <head> <title>amy_project1</title> <meta charset="utf-8"> <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width"> <link type="text/css" rel="stylesheet" href="amy_project1.min.css?v=05072017143156"> <script type="text/javascript" src="./b4w.min.js?v=05072017143156"></script> <script type="text/javascript" src="amy_project1.min.js?v=05072017143156"></script> <style>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>amy_project1</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <link type="text/css" rel="stylesheet" href="amy_project1.min.css?v=05072017143156">
+    <script type="text/javascript" src="./b4w.min.js?v=05072017143156"></script>
+    <script type="text/javascript" src="amy_project1.min.js?v=05072017143156"></script>
+    <style>
     .button {
         position: fixed;
         top: 10px;
-        left:20px;
+        left: 20px;
     }
-    #opendoor, #closedoor, #openwindow, #closewindow, #openlamp, #closelamp {
+
+    #opendoor,
+    #closedoor,
+    #openwindow,
+    #closewindow,
+    #openlamp,
+    #closelamp {
         border: 1px solid #ddd;
         font-size: 20px;
     }
-</style> </head> <body> <div id="main_canvas_container"></div> <div class='button'> <button id='opendoor'>开门</button> <button id='closedoor'>关门</button> <button id='openwindow'>开窗</button> <button id='closewindow'>关窗</button> <button id='openlamp'>开灯</button> <button id='closelamp'>关灯</button> </div> </body> </html>
+    #time {
+        text-align: center;
+        font-size: 20px;
+    }
+    .speed {
+        text-align: center;
+        font-size: 25px;
+        color: #ffbebe;
+    }
+    .screen {
+        position: fixed;
+        bottom: 10px;
+        right: 20px;
+        height: 200px;
+        width: 200px;
+        background: black;
+        color: #fff;
+        padding: 10px 20px;
+        text-align: center;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="main_canvas_container"></div>
+    <div class='button'>
+        <button id='opendoor'>开门</button>
+        <button id='closedoor'>关门</button>
+        <button id='openwindow'>开窗</button>
+        <button id='closewindow'>关窗</button>
+        <button id='openlamp'>开灯</button>
+        <button id='closelamp'>关灯</button>
+    </div>
+    <div class="screen">
+    <div id="time"></div>
+    <div class="speed">65  KM / h</div>
+    <div class="fuel">剩余油量: 80%</div>
+    <div class="all">总行程： 10034km</div>
+    <div class="temp">车内温度： 20℃</div>
+    <div class="outtemp">车外温度： 38℃</div>
+    <div class="statue">车胎稳定</div>
+    </div>
+    <script type="text/javascript">
+        var time = new Date();
+        document.getElementById("time").innerHTML = time.getHours() + ':' + ((time.getMinutes()+'').length === 1? `0${time.getMinutes()}`: time.getMinutes());
+    </script>
+</body>
+
+</html>
