@@ -76,7 +76,7 @@
 
             const host = 'smartsvcdemo.mqtt.iot.gz.baidubce.com';
             const port = 8884;
-            const clientId = `DeviceId-web-${Date.parse(new Date())}`;
+            const clientId = `DeviceId-${Date.parse(new Date())}`;
             var client = new Mqtt.Client(host, port, clientId);
             client.onConnectionLost = function() {
                 console.log('disconnect');
