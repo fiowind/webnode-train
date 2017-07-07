@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>我的汽车啊</title>
+    <script src="https://iot2.cdn.bcebos.com/static/browserMqtt.js"></script>
+    <style type="text/css">
+        .button {
+            position: fixed;
+            top: 10px;
+            left: 20px;
+        }
+
+        #opendoor,#closedoor,#openwindow,#closewindow,#openlamp,#closelamp {
+            border: 1px solid #ddd;
+            font-size: 20px;
+        }
+
+    </style>
+</head>
+<body>
+<div class='button'>
+    <button id='opendoor'>开门</button>
+    <button id='closedoor'>关门</button>
+    <button id='openwindow'>开窗</button>
+    <button id='closewindow'>关窗</button>
+    <button id='openlamp'>开灯</button>
+    <button id='closelamp'>关灯</button>
+</div>
+<script type="text/javascript">
+
+    const host = 'smartsvcdemo.mqtt.iot.gz.baidubce.com';
+    const port = 8884;
+    const clientId = 'DeviceId-fiowind';
+    var client = new Mqtt.Client(host, port, clientId);
+    client.onConnectionLost = function() {
+        console.log('disconnect');
+    }
+    var options = {
+        timeout: 3,
+        keepAliveInterval: 90,
+        cleanSession: true,
+        useSSL: true,
+        onSuccess: () => {
+            console.log('success');
+        },
+        onFailure: () => {alert('fail');}
+    };
+    options.userName = 'smartsvcdemo/carcontrol';
+    options.password = 'RKP0pH8leTcdKwNO6M2k985izrIYROfHqhogR3vn010=';
+    try {
+        client.connect(options);
+    }
+    catch (err) {
+        alert(err);
+    }
+
+    var open_door = document.getElementById("opendoor");
+    var close_door = document.getElementById("closedoor");
+    var open_window = document.getElementById("openwindow");
+    var close_window = document.getElementById("closewindow");
+    var open_lamp = document.getElementById("openlamp");
+    var close_lamp = document.getElementById("closelamp");
+
+
+    open_door.addEventListener("click", opendoor, false);
+    close_door.addEventListener("click", closedoor, false);
+    open_window.addEventListener("click", openwindow, false);
+    close_window.addEventListener("click", closewindow, false);
+    open_lamp.addEventListener("click", openlamp, false);
+    close_lamp.addEventListener("click", closelamp, false);
+
+    function openlamp(e) {
+
+        var message = new Messaging.Message('open');
+        message.destinationName = 'controlLight';
+        message.qos = 0;
+        message.retained = false;
+
+        client.send(message);
+    }
+    function closelamp(e) {
+        var message = new Mqtt.Message('close');
+        message.destinationName = 'controlLight';
+        message.qos = 0;
+        message.retained = false;
+
+        client.send(message);
+    }
+
+    function opendoor(e){
+        console.log('opendoor');
+        var message = new Mqtt.Message('open');
+        message.destinationName = 'controlDoor';
+        message.qos = 0;
+        message.retained = false;
+
+        client.send(message);
+    }
+    function closedoor(e) {
+        var message = new Mqtt.Message('close');
+        message.destinationName = 'controlDoor';
+        message.qos = 0;
+        message.retained = false;
+
+        client.send(message);
+    }
+    function openwindow(e) {
+        var message = new Mqtt.Message('open');
+        message.destinationName = 'controlWindow';
+        message.qos = 0;
+        message.retained = false;
+
+        client.send(message);
+    }
+    function closewindow(e) {
+        var message = new Mqtt.Message('close');
+        message.destinationName = 'controlWindow';
+        message.qos = 0;
+        message.retained = false;
+
+        client.send(message);
+
+    }
+</script>
+</body>
+</html>
