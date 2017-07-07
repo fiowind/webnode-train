@@ -2,138 +2,138 @@
 <html>
 
 <head>
-    <title>amy_project1</title>
+    <title>车联网demo</title>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
-    <link type="text/css" rel="stylesheet" href="amy_project1.min.css?v=05072017143156">
-    <script type="text/javascript" src="./b4w.min.js?v=05072017143156"></script>
-    <script type="text/javascript" src="amy_project1.min.js?v=05072017143156"></script>
-    <script src="./browserMqtt.js"></script>
-    <style>
-    .button {
-        position: fixed;
-        top: 10px;
-        left: 20px;
-        display: none;
-    }
+    <link type="text/css" rel="stylesheet" href="car2.min.css?v=07072017165025">
+    <script type="text/javascript" src="./b4w.min.js?v=07072017165025"></script>
+    <script type="text/javascript" src="car2.min.js?v=07072017165025"></script>
+    <script src="https://iot2.cdn.bcebos.com/static/browserMqtt.js"></script>
+        <style>
+        .button {
+            position: fixed;
+            top: 10px;
+            left: 20px;
+            display: none;
+        }
 
-    #opendoor,
-    #closedoor,
-    #openwindow,
-    #closewindow,
-    #openlamp,
-    #closelamp {
-        border: 1px solid #ddd;
-        font-size: 20px;
-    }
-    #time {
-        text-align: center;
-        font-size: 20px;
-    }
-    .speed {
-        text-align: center;
-        font-size: 25px;
-        color: #ffbebe;
-    }
-    .screen {
-        position: fixed;
-        bottom: 10px;
-        right: 20px;
-        height: 200px;
-        width: 200px;
-        background: black;
-        color: #fff;
-        padding: 10px 20px;
-        text-align: center;
-    }
-    </style>
-</head>
+        #opendoor,
+        #closedoor,
+        #openwindow,
+        #closewindow,
+        #openlamp,
+        #closelamp {
+            border: 1px solid #ddd;
+            font-size: 20px;
+        }
+        #time {
+            text-align: center;
+            font-size: 20px;
+        }
+        .speed {
+            text-align: center;
+            font-size: 25px;
+            color: #ffbebe;
+        }
+        .screen {
+            position: fixed;
+            bottom: 10px;
+            right: 20px;
+            height: 200px;
+            width: 200px;
+            background: black;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        </style>
+    </head>
 
-<body>
-    <div id="main_canvas_container"></div>
-    <div class='button'>
-        <button id='opendoor'>开门</button>
-        <button id='closedoor'>关门</button>
-        <button id='openwindow'>开窗</button>
-        <button id='closewindow'>关窗</button>
-        <button id='openlamp'>开灯</button>
-        <button id='closelamp'>关灯</button>
-    </div>
-    <div class="screen">
-    <div id="time"></div>
-    <div class="speed">65  KM / h</div>
-    <div class="fuel">剩余油量: 80%</div>
-    <div class="all">总行程： 10034km</div>
-    <div id="temp">车内温度： 20℃</div>
-    <div class="outtemp">车外温度： 38℃</div>
-    <div class="statue">车胎稳定</div>
-    <div id="temperature"></div>
-    </div>
-    <script type="text/javascript">
-        var time = new Date();
-        document.getElementById("time").innerHTML = time.getHours() + ':' + ((time.getMinutes()+'').length === 1? `0${time.getMinutes()}`: time.getMinutes());
+    <body>
+        <div id="main_canvas_container"></div>
+        <div class='button'>
+            <button id='opendoor'>开门</button>
+            <button id='closedoor'>关门</button>
+            <button id='openwindow'>开窗</button>
+            <button id='closewindow'>关窗</button>
+            <button id='openlamp'>开灯</button>
+            <button id='closelamp'>关灯</button>
+        </div>
+        <div class="screen">
+        <div id="time"></div>
+        <div class="speed">65  KM / h</div>
+        <div class="fuel">剩余油量: 80%</div>
+        <div class="all">总行程： 10034km</div>
+        <div id="temp">车内温度： 20℃</div>
+        <div class="outtemp">车外温度： 38℃</div>
+        <div class="statue">车胎稳定</div>
+        <div id="temperature"></div>
+        </div>
+        <script type="text/javascript">
+            var time = new Date();
+            document.getElementById("time").innerHTML = time.getHours() + ':' + ((time.getMinutes()+'').length === 1? `0${time.getMinutes()}`: time.getMinutes());
 
 
-        const host = 'smartsvcdemo.mqtt.iot.gz.baidubce.com';
-        const port = 8884;
-        const clientId = 'DeviceId-lszb3ds7bp';
-        var client = new Mqtt.Client(host, port, clientId);
-        client.onMessageArrived = function(message) {
-            console.log(message.payloadString);
-            if(message.destinationName==='controlDoor'&&message.payloadString === 'open') {
-                 document.getElementById('opendoor').click();
-            }
-            else if(message.destinationName==='controlDoor'&&message.payloadString === 'close') {
-                 document.getElementById('closedoor').click();
-            }
-            else if(message.destinationName==='controlWindow'&&message.payloadString === 'open') {
-                 document.getElementById('openwindow').click();
-            }
-            else if(message.destinationName==='controlWindow'&&message.payloadString === 'close') {
-                 document.getElementById('closewindow').click();
-            }
-            else if(message.destinationName==='controlLight'&&message.payloadString === 'open') {
-                 document.getElementById('openlamp').click();
-            }
-            else if(message.destinationName==='controlLight'&&message.payloadString === 'close') {
-                 document.getElementById('closelamp').click();
-            }
-            else if(message.destinationName==='regulateTemperature'&&message.payloadString === 'open') {
-                 document.getElementById('temperature').innerHTML = '空调已开';
-            }
-            else if(message.destinationName==='regulateTemperature'&&message.payloadString === 'close') {
-                 document.getElementById('temperature').innerHTML = '空调已关';
-            }
-            else if(message.destinationName==='regulateTemperature') {
-                var re = /^[0-9]+.?[0-9]*$/;
-                if (re.test(message.payloadString)) {
-                    document.getElementById('temp').innerHTML = `车内温度： ${message.payloadString}℃`;
+            const host = 'smartsvcdemo.mqtt.iot.gz.baidubce.com';
+            const port = 8884;
+            const clientId = 'DeviceId-lszb3ds7bp';
+            var client = new Mqtt.Client(host, port, clientId);
+            client.onMessageArrived = function(message) {
+                console.log(message.payloadString);
+                if(message.destinationName==='controlDoor'&&message.payloadString === 'open') {
+                     document.getElementById('opendoor').click();
+                }
+                else if(message.destinationName==='controlDoor'&&message.payloadString === 'close') {
+                     document.getElementById('closedoor').click();
+                }
+                else if(message.destinationName==='controlWindow'&&message.payloadString === 'open') {
+                     document.getElementById('openwindow').click();
+                }
+                else if(message.destinationName==='controlWindow'&&message.payloadString === 'close') {
+                     document.getElementById('closewindow').click();
+                }
+                else if(message.destinationName==='controlLight'&&message.payloadString === 'open') {
+                     document.getElementById('openlamp').click();
+                }
+                else if(message.destinationName==='controlLight'&&message.payloadString === 'close') {
+                     document.getElementById('closelamp').click();
+                }
+                else if(message.destinationName==='regulateTemperature'&&message.payloadString === 'open') {
+                     document.getElementById('temperature').innerHTML = '空调已开';
+                }
+                else if(message.destinationName==='regulateTemperature'&&message.payloadString === 'close') {
+                     document.getElementById('temperature').innerHTML = '空调已关';
+                }
+                else if(message.destinationName==='regulateTemperature') {
+                    var re = /^[0-9]+.?[0-9]*$/;
+                    if (re.test(message.payloadString)) {
+                        document.getElementById('temp').innerHTML = `车内温度： ${message.payloadString}℃`;
+                    }
                 }
             }
-        }
-        var options = {
-            timeout: 3,
-            keepAliveInterval: 90,
-            cleanSession: true,
-            useSSL: true,
-            onSuccess: () => {
-                console.log('success');
-                client.subscribe('controlDoor', {qos: 0});
-                client.subscribe('controlWindow', {qos: 0});
-                client.subscribe('controlLight', {qos: 0});
-                client.subscribe('regulateTemperature', {qos: 0});
-            },
-            onFailure: () => {alert('fail');}
-        };
-        options.userName = 'smartsvcdemo/carweb';
-        options.password = 'RKP0pH8leTcdKwNO6M2k985izrIYROfHqhogR3vn010=';
-        try {
-            client.connect(options);
-        }
-        catch (err) {
-            alert(err);
-        }
-    </script>
-</body>
+            var options = {
+                timeout: 3,
+                keepAliveInterval: 90,
+                cleanSession: true,
+                useSSL: true,
+                onSuccess: () => {
+                    console.log('success');
+                    client.subscribe('controlDoor', {qos: 0});
+                    client.subscribe('controlWindow', {qos: 0});
+                    client.subscribe('controlLight', {qos: 0});
+                    client.subscribe('regulateTemperature', {qos: 0});
+                },
+                onFailure: () => {alert('fail');}
+            };
+            options.userName = 'smartsvcdemo/carweb';
+            options.password = 'RKP0pH8leTcdKwNO6M2k985izrIYROfHqhogR3vn010=';
+            try {
+                client.connect(options);
+            }
+            catch (err) {
+                alert(err);
+            }
+        </script>
+    </body>
 
 </html>
