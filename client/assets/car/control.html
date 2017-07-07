@@ -2,7 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="full-screen" content="true">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="360-fullscreen" content="true">
     <title>我的汽车啊</title>
     <script src="https://iot2.cdn.bcebos.com/static/browserMqtt.js"></script>
     <style type="text/css">
@@ -10,11 +16,21 @@
             position: fixed;
             top: 10px;
             left: 20px;
+            text-align: center;
+            width: 100%;
         }
 
-        #opendoor,#closedoor,#openwindow,#closewindow,#openlamp,#closelamp {
+        #opendoor,#closedoor,#openwindow,#closewindow,#openlamp,#closelamp,#openkongtiao,#closekongtiao {
             border: 1px solid #ddd;
-            font-size: 20px;
+            font-size: 25px;
+            display: block;
+            margin: 10px;
+            line-height: 40px;
+            text-align: center;
+        }
+        body {
+            margin: 0;
+            padding: 0;
         }
 
     </style>
@@ -27,12 +43,14 @@
     <button id='closewindow'>关窗</button>
     <button id='openlamp'>开灯</button>
     <button id='closelamp'>关灯</button>
+    <button id='openkongtiao'>开空调</button>
+    <button id='closekongtiao'>关空调</button>
 </div>
 <script type="text/javascript">
 
     const host = 'smartsvcdemo.mqtt.iot.gz.baidubce.com';
     const port = 8884;
-    const clientId = 'DeviceId-fiowind';
+    const clientId = `DeviceId-f${Date.parse(new Date())}`;
     var client = new Mqtt.Client(host, port, clientId);
     client.onConnectionLost = function() {
         console.log('disconnect');
@@ -62,6 +80,8 @@
     var close_window = document.getElementById("closewindow");
     var open_lamp = document.getElementById("openlamp");
     var close_lamp = document.getElementById("closelamp");
+    var open_k = document.getElementById("openkongtiao");
+    var close_k = document.getElementById("closekongtiao");
 
 
     open_door.addEventListener("click", opendoor, false);
@@ -70,10 +90,29 @@
     close_window.addEventListener("click", closewindow, false);
     open_lamp.addEventListener("click", openlamp, false);
     close_lamp.addEventListener("click", closelamp, false);
+    open_k.addEventListener("click", openk, false);
+    close_k.addEventListener("click", closek, false);
+
+    function openk(e) {
+        var message = new Mqtt.Message('open');
+        message.destinationName = 'regulateTemperature';
+        message.qos = 0;
+        message.retained = false;
+
+        client.send(message);
+    }
+    function closek(e) {
+        var message = new Mqtt.Message('close');
+        message.destinationName = 'regulateTemperature';
+        message.qos = 0;
+        message.retained = false;
+
+        client.send(message);
+    }
 
     function openlamp(e) {
 
-        var message = new Messaging.Message('open');
+        var message = new Mqtt.Message('open');
         message.destinationName = 'controlLight';
         message.qos = 0;
         message.retained = false;
