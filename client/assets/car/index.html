@@ -29,6 +29,8 @@
         #time {
             text-align: center;
             font-size: 20px;
+            position: absolute;
+            bottom: 10px;
         }
         .speed {
             text-align: center;
@@ -40,12 +42,89 @@
             bottom: 10px;
             right: 20px;
             height: 200px;
-            width: 200px;
-            background: black;
+            width: 380px;
             color: #fff;
             padding: 10px 20px;
             text-align: center;
+            background-image: url(http://iot2.gz.bcebos.com/static/yibiao.png);
+            background-size: 420px;
+            background-repeat: no-repeat;
         }
+        #temperature {
+            font-size: 20px;
+            position: absolute;
+            bottom: 10px;
+            left: 100px;
+        }
+        #temp1 {
+            font-size: 20px;
+            position: absolute;
+            bottom: 60px;
+            right: 88px;
+            height: 85px;
+            width: 14px;
+            border: 1px solid #31393d;
+            border-radius: 10px;
+            padding: 1px;
+            box-sizing: border-box;
+        }
+        #temp2 {
+            font-size: 20px;
+            position: absolute;
+            bottom: 60px;
+            right: 54px;
+            height: 85px;
+            width: 14px;
+            border: 1px solid #31393d;
+            border-radius: 10px;
+            padding: 1px;
+            box-sizing: border-box;
+        }
+        #a1 {
+            display: inline-block;
+            height: 59%;
+            width: 6px;
+            background: #4e5d66;
+            border-radius: 10px;
+            position: absolute;
+            bottom: 1px;
+            margin: 2px;
+            text-align: center;
+            right: 1px;
+        }
+        #a2 {
+            display: inline-block;
+            height: 76%;
+            width: 6px;
+            background: #4e5d66;
+            border-radius: 10px;
+            position: absolute;
+            bottom: 1px;
+            margin: 2px;
+            text-align: center;
+            right: 1px;
+        }
+
+        .tmp {
+            position: absolute;
+            font-size: 10px;
+            color: #7c8993;
+            left: -4px;
+            top: -20px;
+        }
+
+        #temperature {
+            display: none;
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-image: url('http://iot2.gz.bcebos.com/static/1600.png');
+            background-size: 20px;
+            background-repeat: no-repeat;
+            left: 376px;
+            top: 35px;
+        }
+
         </style>
     </head>
 
@@ -60,14 +139,14 @@
             <button id='closelamp'>关灯</button>
         </div>
         <div class="screen">
-        <div id="time"></div>
-        <div class="speed">65  KM / h</div>
-        <div class="fuel">剩余油量: 80%</div>
-        <div class="all">总行程： 10034km</div>
-        <div id="temp">车内温度： 20℃</div>
-        <div class="outtemp">车外温度： 38℃</div>
-        <div class="statue">车胎稳定</div>
-        <div id="temperature"></div>
+
+            <div id="time"></div>
+
+            <div id="temp1"><span id="a1"></span><span class="tmp" id="tmp1">30℃</span></div>
+            <div id="temp2"><span id="a2"></span><span class="tmp" id="tmp2">38℃</span></div>
+
+
+            <div id="temperature"></div>
         </div>
         <script type="text/javascript">
             var time = new Date();
@@ -102,15 +181,16 @@
                      document.getElementById('closelamp').click();
                 }
                 else if(message.destinationName==='regulateTemperature'&&message.payloadString === 'open') {
-                     document.getElementById('temperature').innerHTML = '空调已开';
+                     document.getElementById('temperature').style.display = 'block';
                 }
                 else if(message.destinationName==='regulateTemperature'&&message.payloadString === 'close') {
-                     document.getElementById('temperature').innerHTML = '空调已关';
+                     document.getElementById('temperature').style.display = 'none';
                 }
                 else if(message.destinationName==='regulateTemperature') {
                     var re = /^[0-9]+.?[0-9]*$/;
                     if (re.test(message.payloadString)) {
-                        document.getElementById('temp').innerHTML = `车内温度： ${message.payloadString}℃`;
+                        document.getElementById('tmp1').innerHTML = `${message.payloadString}℃`;
+                        document.getElementById('tmp1').style.height = `${message.payloadString/50*100}%`;
                     }
                 }
             }
