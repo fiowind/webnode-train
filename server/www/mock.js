@@ -7,11 +7,28 @@ import Router from 'koa-router';
 import fetch from 'node-fetch';
 
 import mockup from './mockdata.js';
+import Knex from 'knex';
 
 const mockRoute = new Router();
 
+const mysql = Knex({
+  client: 'mysql',
+  connection: {
+    host     : '127.0.0.1',
+    user     : 'root',
+    password : '',
+    database : 'rqz'
+  }
+});
+
 mockRoute.get('/api/education/home/recommend', ctx => {
     ctx.body = mockup.recommend;
+});
+
+
+mockRoute.get('/api/a/test', async ctx => {
+    var data = await mysql('mvp_rqz_list');
+    ctx.body = data;
 });
 
 
