@@ -28,6 +28,16 @@ mockRoute.get('/api/education/list/:cid', ctx => {
     ctx.body = mockup.list;
 });
 
+mockRoute.get('/api/demo/:title', ctx => {
+    console.log(ctx.params);
+    var randomNum = Math.random()*5;
+    ctx.body = {
+        'title': ctx.params.title,
+        'content': `${ctx.params.title},mycontenta,${new Date().toString()}`,
+        'score': parseInt(randomNum, 10)
+    };
+});
+
 
 mockRoute.get('/api/education/category/:cid', ctx => {
     ctx.body = mockup.category;
