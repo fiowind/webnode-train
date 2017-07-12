@@ -99,10 +99,10 @@
                         document.getElementById('lun1').innerHTML = `${message.payloadString}PSI`;
                     }
                     else if(message.payloadString == 'warn') {
-                        document.getElementById('lun1').background = 'red';
+                        document.getElementById('lun1').style.background = 'red';
                     }
                     else if(message.payloadString == 'ok') {
-                        document.getElementById('lun1').background = '#5c5858';
+                        document.getElementById('lun1').style.background = '#5c5858';
                     }
                 }
                 else if(message.destinationName==='PSI02'&&re.test(message.payloadString)) {
@@ -110,10 +110,10 @@
                         document.getElementById('lun2').innerHTML = `${message.payloadString}PSI`;
                     }
                     else if(message.payloadString == 'warn') {
-                        document.getElementById('lun2').background = 'red';
+                        document.getElementById('lun2').style.background = 'red';
                     }
                     else if(message.payloadString == 'ok') {
-                        document.getElementById('lun2').background = '#5c5858';
+                        document.getElementById('lun2').style.background = '#5c5858';
                     }
                 }
                 else if(message.destinationName==='PSI03'&&re.test(message.payloadString)) {
@@ -121,10 +121,10 @@
                         document.getElementById('lun3').innerHTML = `${message.payloadString}PSI`;
                     }
                     else if(message.payloadString == 'warn') {
-                        document.getElementById('lun3').background = 'red';
+                        document.getElementById('lun3').style.background = 'red';
                     }
                     else if(message.payloadString == 'ok') {
-                        document.getElementById('lun3').background = '#5c5858';
+                        document.getElementById('lun3').style.background = '#5c5858';
                     }
                 }
                 else if(message.destinationName==='PSI04'&&re.test(message.payloadString)) {
@@ -132,10 +132,10 @@
                         document.getElementById('lun4').innerHTML = `${message.payloadString}PSI`;
                     }
                     else if(message.payloadString == 'warn') {
-                        document.getElementById('lun4').background = 'red';
+                        document.getElementById('lun4').style.background = 'red';
                     }
                     else if(message.payloadString == 'ok') {
-                        document.getElementById('lun4').background = '#5c5858';
+                        document.getElementById('lun4').style.background = '#5c5858';
                     }
                 }
 
