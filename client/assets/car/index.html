@@ -105,7 +105,7 @@
                         document.getElementById('lun1').style.background = '#5c5858';
                     }
                 }
-                else if(message.destinationName==='PSI02'&&re.test(message.payloadString)) {
+                else if(message.destinationName==='PSI02') {
                     if(re.test(message.payloadString)) {
                         document.getElementById('lun2').innerHTML = `${message.payloadString}PSI`;
                     }
@@ -116,7 +116,7 @@
                         document.getElementById('lun2').style.background = '#5c5858';
                     }
                 }
-                else if(message.destinationName==='PSI03'&&re.test(message.payloadString)) {
+                else if(message.destinationName==='PSI03') {
                     if(re.test(message.payloadString)) {
                         document.getElementById('lun3').innerHTML = `${message.payloadString}PSI`;
                     }
@@ -127,7 +127,7 @@
                         document.getElementById('lun3').style.background = '#5c5858';
                     }
                 }
-                else if(message.destinationName==='PSI04'&&re.test(message.payloadString)) {
+                else if(message.destinationName==='PSI04') {
                     if(re.test(message.payloadString)) {
                         document.getElementById('lun4').innerHTML = `${message.payloadString}PSI`;
                     }
