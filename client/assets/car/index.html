@@ -9,146 +9,6 @@
     <script type="text/javascript" src="./b4w.min.js?v=07072017165025"></script>
     <script type="text/javascript" src="car2.min.js?v=07072017165025"></script>
     <script src="https://iot2.cdn.bcebos.com/static/browserMqtt.js"></script>
-        <style>
-        .button {
-            position: fixed;
-            top: 10px;
-            left: 20px;
-            display: none;
-        }
-
-        #opendoor,
-        #closedoor,
-        #openwindow,
-        #closewindow,
-        #openlamp,
-        #closelamp {
-            border: 1px solid #ddd;
-            font-size: 20px;
-        }
-        #time {
-            text-align: center;
-            font-size: 20px;
-            position: absolute;
-            bottom: 10px;
-        }
-        .speed {
-            text-align: center;
-            font-size: 25px;
-            color: #ffbebe;
-        }
-        .screen {
-            position: fixed;
-            bottom: 10px;
-            right: 20px;
-            height: 200px;
-            width: 380px;
-            color: #fff;
-            padding: 10px 20px;
-            text-align: center;
-            background-image: url(http://iot2.gz.bcebos.com/static/yibiao.png);
-            background-size: 420px;
-            background-repeat: no-repeat;
-        }
-        #temperature {
-            font-size: 20px;
-            position: absolute;
-            bottom: 10px;
-            left: 100px;
-        }
-        #temp1 {
-            font-size: 20px;
-            position: absolute;
-            bottom: 60px;
-            right: 88px;
-            height: 85px;
-            width: 14px;
-            border: 1px solid #31393d;
-            border-radius: 10px;
-            padding: 1px;
-            box-sizing: border-box;
-        }
-        #temp2 {
-            font-size: 20px;
-            position: absolute;
-            bottom: 60px;
-            right: 54px;
-            height: 85px;
-            width: 14px;
-            border: 1px solid #31393d;
-            border-radius: 10px;
-            padding: 1px;
-            box-sizing: border-box;
-        }
-        #a1 {
-            display: inline-block;
-            height: 59%;
-            width: 6px;
-            background: #4e5d66;
-            border-radius: 10px;
-            position: absolute;
-            bottom: 1px;
-            margin: 2px;
-            text-align: center;
-            right: 1px;
-        }
-        #a2 {
-            display: inline-block;
-            height: 76%;
-            width: 6px;
-            background: #4e5d66;
-            border-radius: 10px;
-            position: absolute;
-            bottom: 1px;
-            margin: 2px;
-            text-align: center;
-            right: 1px;
-        }
-
-        .tmp {
-            position: absolute;
-            font-size: 10px;
-            color: #7c8993;
-            left: -4px;
-            top: -20px;
-        }
-
-        #temperature {
-            display: block;
-            position: absolute;
-            height: 20px;
-            background-image: url('http://iot2.gz.bcebos.com/static/1600.png');
-            background-size: 20px;
-            background-repeat: no-repeat;
-            left: 336px;
-            top: 35px;
-            width: 75px;
-            font-size: 14px;
-            color: red;
-        }
-
-        #temperature1 {
-            display: none;
-            position: absolute;
-            height: 20px;
-            background-image: url('http://iot2.gz.bcebos.com/static/airon.png');
-            background-size: 20px;
-            background-repeat: no-repeat;
-            left: 336px;
-            top: 35px;
-            width: 75px;
-            font-size: 14px;
-            color: green;
-        }
-
-        @media screen and (max-width:600px){
-            .screen {
-                transform: scale(0.7);
-                right: -20px;
-            }
-        }
-
-        </style>
     </head>
 
     <body>
@@ -162,15 +22,30 @@
             <button id='closelamp'>关灯</button>
         </div>
         <div class="screen">
+            <div class="bao">
+                <div class="title">运行状态</div>
+                <div class="chetan">
+                    <div id="lun1">33PSI</div>
+                    <div id="lun2">33PSI</div>
+                    <div id="lun3">33PSI</div>
+                    <div id="lun4">33PSI</div>
+                </div>
 
-            <div id="time"></div>
+                <div class="yibiao">
+                    <span class="shisu">时速</span>
+                    <span class="sudu">65</span>
+                    <span class="licheng">10034km</span>
+                </div>
 
-            <div id="temp1"><span id="a1"></span><span class="tmp" id="tmp1">30℃</span></div>
-            <div id="temp2"><span id="a2"></span><span class="tmp" id="tmp2">38℃</span></div>
-
-
-            <div id="temperature">OFF</div>
-            <div id="temperature1">ON</div>
+                <div id="time"></div>
+                <div class="long">
+                    <div class="temp"><span class="guan" id="a0"></span><span class="tmp" id="tmp2">80%</span><span class="text">油量</span></div>
+                    <div class="temp"><span class="guan" id="a1"></span><span class="tmp" id="tmp1">30℃</span><span class="text">车内</span></div>
+                    <div class="temp"><span class="guan" id="a2"></span><span class="tmp" id="tmp2">38℃</span><span class="text">车外</span></div>
+                    <div id="temperature">OFF</div>
+                    <div id="temperature1">ON</div>
+                </div>
+            </div>
         </div>
         <script type="text/javascript">
             var time = new Date();
@@ -186,6 +61,7 @@
             }
             client.onMessageArrived = function(message) {
                 console.log(message.payloadString);
+                var re = /^[0-9]+.?[0-9]*$/;
                 if(message.destinationName==='controlDoor'&&message.payloadString === 'open') {
                      document.getElementById('opendoor').click();
                 }
@@ -213,12 +89,56 @@
                      document.getElementById('temperature1').style.display = 'none';
                 }
                 else if(message.destinationName==='regulateTemperature') {
-                    var re = /^[0-9]+.?[0-9]*$/;
                     if (re.test(message.payloadString)) {
                         document.getElementById('tmp1').innerHTML = `${message.payloadString}℃`;
                         document.getElementById('tmp1').style.height = `${message.payloadString/50*100}%`;
                     }
                 }
+                else if(message.destinationName==='PSI01') {
+                    if(re.test(message.payloadString)) {
+                        document.getElementById('lun1').innerHTML = `${message.payloadString}PSI`;
+                    }
+                    else if(message.payloadString == 'warn') {
+                        document.getElementById('lun1').background = 'red';
+                    }
+                    else if(message.payloadString == 'ok') {
+                        document.getElementById('lun1').background = '#5c5858';
+                    }
+                }
+                else if(message.destinationName==='PSI02'&&re.test(message.payloadString)) {
+                    if(re.test(message.payloadString)) {
+                        document.getElementById('lun2').innerHTML = `${message.payloadString}PSI`;
+                    }
+                    else if(message.payloadString == 'warn') {
+                        document.getElementById('lun2').background = 'red';
+                    }
+                    else if(message.payloadString == 'ok') {
+                        document.getElementById('lun2').background = '#5c5858';
+                    }
+                }
+                else if(message.destinationName==='PSI03'&&re.test(message.payloadString)) {
+                    if(re.test(message.payloadString)) {
+                        document.getElementById('lun3').innerHTML = `${message.payloadString}PSI`;
+                    }
+                    else if(message.payloadString == 'warn') {
+                        document.getElementById('lun3').background = 'red';
+                    }
+                    else if(message.payloadString == 'ok') {
+                        document.getElementById('lun3').background = '#5c5858';
+                    }
+                }
+                else if(message.destinationName==='PSI04'&&re.test(message.payloadString)) {
+                    if(re.test(message.payloadString)) {
+                        document.getElementById('lun4').innerHTML = `${message.payloadString}PSI`;
+                    }
+                    else if(message.payloadString == 'warn') {
+                        document.getElementById('lun4').background = 'red';
+                    }
+                    else if(message.payloadString == 'ok') {
+                        document.getElementById('lun4').background = '#5c5858';
+                    }
+                }
+
             }
             var options = {
                 timeout: 3,
@@ -231,6 +151,11 @@
                     client.subscribe('controlWindow', {qos: 0});
                     client.subscribe('controlLight', {qos: 0});
                     client.subscribe('regulateTemperature', {qos: 0});
+                    client.subscribe('controlDoor', {qos: 0});
+                    client.subscribe('PSI04', {qos: 0});
+                    client.subscribe('PSI01', {qos: 0});
+                    client.subscribe('PSI02', {qos: 0});
+                    client.subscribe('PSI03', {qos: 0});
                 },
                 onFailure: () => {alert('fail');}
             };
