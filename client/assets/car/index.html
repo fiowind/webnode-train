@@ -101,7 +101,7 @@
                 else if(message.destinationName==='PSI01'&&re.test(message.payloadString)) {
                     document.getElementById('lun1').innerHTML = `${message.payloadString}MP`;
                     if(parseFloat(message.payloadString) > 2.0 && parseFloat(message.payloadString)<3.0) {
-                        document.getElementById('lun1').style.background = '#ddd';
+                        document.getElementById('lun1').style.background = '#5c5858';
                     }
                     else {
                         document.getElementById('lun1').style.background = 'red';
@@ -110,7 +110,7 @@
                 else if(message.destinationName==='PSI02'&&re.test(message.payloadString)) {
                     document.getElementById('lun2').innerHTML = `${message.payloadString}MP`;
                     if(parseFloat(message.payloadString) > 2.0 && parseFloat(message.payloadString)<3.0) {
-                        document.getElementById('lun2').style.background = '#ddd';
+                        document.getElementById('lun2').style.background = '#5c5858';
                     }
                     else {
                         document.getElementById('lun2').style.background = 'red';
@@ -119,7 +119,7 @@
                 else if(message.destinationName==='PSI03'&&re.test(message.payloadString)) {
                     document.getElementById('lun3').innerHTML = `${message.payloadString}MP`;
                     if(parseFloat(message.payloadString) > 2.0 && parseFloat(message.payloadString)<3.0) {
-                        document.getElementById('lun3').style.background = '#ddd';
+                        document.getElementById('lun3').style.background = '#5c5858';
                     }
                     else {
                         document.getElementById('lun3').style.background = 'red';
@@ -128,7 +128,7 @@
                 else if(message.destinationName==='PSI04'&&re.test(message.payloadString)) {
                     document.getElementById('lun4').innerHTML = `${message.payloadString}MP`;
                     if(parseFloat(message.payloadString) > 2.0 && parseFloat(message.payloadString)<3.0) {
-                        document.getElementById('lun4').style.background = '#ddd';
+                        document.getElementById('lun4').style.background = '#5c5858';
                     }
                     else {
                         document.getElementById('lun4').style.background = 'red';
@@ -136,10 +136,10 @@
                 }
                 else if(message.destinationName==='compressor') {
                     if (message.payloadString == 'warn') {
-                        document.getElementById('lengdongji').innerHTML = '压缩机异常';
+                        document.getElementById('yasuoji').innerHTML = '压缩机异常';
                     }
                     else if (message.payloadString == 'ok') {
-                        document.getElementById('lengdongji').innerHTML = '压缩机正常';
+                        document.getElementById('yasuoji').innerHTML = '压缩机正常';
                     }
                 }
                 else if(message.destinationName==='refrigerator') {

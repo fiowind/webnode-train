@@ -93,6 +93,8 @@
     top: 130px;
     left: 77px;
     font-size: 13px;
+    width: 50px;
+    text-align: center;
 }
 
 #temperature {
