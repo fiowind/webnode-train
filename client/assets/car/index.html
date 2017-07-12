@@ -25,16 +25,20 @@
             <div class="bao">
                 <div class="title">运行状态</div>
                 <div class="chetan">
-                    <div id="lun1">33PSI</div>
-                    <div id="lun2">33PSI</div>
-                    <div id="lun3">33PSI</div>
-                    <div id="lun4">33PSI</div>
+                    <div id="lun1">2.5MP</div>
+                    <div id="lun2">2.5MP</div>
+                    <div id="lun3">2.5MP</div>
+                    <div id="lun4">2.5MP</div>
+                </div>
+                <div class="status">
+                    <div id="yasuoji">压缩机正常</div>
+                    <div id="lengdongji">冷冻机正常</div>
                 </div>
 
                 <div class="yibiao">
                     <span class="shisu">时速</span>
                     <span class="sudu">65</span>
-                    <span class="licheng">10034km</span>
+                    <span class="licheng" id='esm'>10034km</span>
                 </div>
 
                 <div id="time"></div>
@@ -94,51 +98,61 @@
                         document.getElementById('tmp1').style.height = `${message.payloadString/50*100}%`;
                     }
                 }
-                else if(message.destinationName==='PSI01') {
-                    if(re.test(message.payloadString)) {
-                        document.getElementById('lun1').innerHTML = `${message.payloadString}PSI`;
+                else if(message.destinationName==='PSI01'&&re.test(message.payloadString)) {
+                    document.getElementById('lun1').innerHTML = `${message.payloadString}MP`;
+                    if(parseFloat(message.payloadString) > 2.0 && parseFloat(message.payloadString)<3.0) {
+                        document.getElementById('lun01').style.background = '#ddd';
                     }
-                    else if(message.payloadString == 'warn') {
-                        document.getElementById('lun1').style.background = '#932222';
-                    }
-                    else if(message.payloadString == 'ok') {
-                        document.getElementById('lun1').style.background = '#5c5858';
+                    else {
+                        document.getElementById('lun01').style.background = 'red';
                     }
                 }
-                else if(message.destinationName==='PSI02') {
-                    if(re.test(message.payloadString)) {
-                        document.getElementById('lun2').innerHTML = `${message.payloadString}PSI`;
+                else if(message.destinationName==='PSI02'&&re.test(message.payloadString)) {
+                    document.getElementById('lun2').innerHTML = `${message.payloadString}MP`;
+                    if(parseFloat(message.payloadString) > 2.0 && parseFloat(message.payloadString)<3.0) {
+                        document.getElementById('lun02').style.background = '#ddd';
                     }
-                    else if(message.payloadString == 'warn') {
-                        document.getElementById('lun2').style.background = '#932222';
-                    }
-                    else if(message.payloadString == 'ok') {
-                        document.getElementById('lun2').style.background = '#5c5858';
+                    else {
+                        document.getElementById('lun02').style.background = 'red';
                     }
                 }
-                else if(message.destinationName==='PSI03') {
-                    if(re.test(message.payloadString)) {
-                        document.getElementById('lun3').innerHTML = `${message.payloadString}PSI`;
+                else if(message.destinationName==='PSI03'&&re.test(message.payloadString)) {
+                    document.getElementById('lun3').innerHTML = `${message.payloadString}MP`;
+                    if(parseFloat(message.payloadString) > 2.0 && parseFloat(message.payloadString)<3.0) {
+                        document.getElementById('lun03').style.background = '#ddd';
                     }
-                    else if(message.payloadString == 'warn') {
-                        document.getElementById('lun3').style.background = '#932222';
-                    }
-                    else if(message.payloadString == 'ok') {
-                        document.getElementById('lun3').style.background = '#5c5858';
+                    else {
+                        document.getElementById('lun03').style.background = 'red';
                     }
                 }
-                else if(message.destinationName==='PSI04') {
-                    if(re.test(message.payloadString)) {
-                        document.getElementById('lun4').innerHTML = `${message.payloadString}PSI`;
+                else if(message.destinationName==='PSI04'&&re.test(message.payloadString)) {
+                    document.getElementById('lun4').innerHTML = `${message.payloadString}MP`;
+                    if(parseFloat(message.payloadString) > 2.0 && parseFloat(message.payloadString)<3.0) {
+                        document.getElementById('lun04').style.background = '#ddd';
                     }
-                    else if(message.payloadString == 'warn') {
-                        document.getElementById('lun4').style.background = '#932222';
-                    }
-                    else if(message.payloadString == 'ok') {
-                        document.getElementById('lun4').style.background = '#5c5858';
+                    else {
+                        document.getElementById('lun04').style.background = 'red';
                     }
                 }
-
+                else if(message.destinationName==='compressor') {
+                    if (message.payloadString == 'warn') {
+                        document.getElementById('lengdongji').innerHTML = '压缩机异常';
+                    }
+                    else if (message.payloadString == 'ok') {
+                        document.getElementById('lengdongji').innerHTML = '压缩机正常';
+                    }
+                }
+                else if(message.destinationName==='refrigerator') {
+                    if (message.payloadString == 'warn') {
+                        document.getElementById('lengdongji').innerHTML = '冷冻机异常';
+                    }
+                    else if (message.payloadString == 'ok') {
+                        document.getElementById('lengdongji').innerHTML = '冷冻机正常';
+                    }
+                }
+                else if(message.destinationName==='esm'&&re.test(message.payloadString)) {
+                    document.getElementById('esm').innerHTML = `${message.payloadString}km`;
+                }
             }
             var options = {
                 timeout: 3,
@@ -156,6 +170,9 @@
                     client.subscribe('PSI01', {qos: 0});
                     client.subscribe('PSI02', {qos: 0});
                     client.subscribe('PSI03', {qos: 0});
+                    client.subscribe('compressor', {qos: 0});
+                    client.subscribe('refrigerator', {qos: 0});
+                    client.subscribe('esm', {qos: 0});
                 },
                 onFailure: () => {alert('fail');}
             };
