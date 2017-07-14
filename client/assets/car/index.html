@@ -137,6 +137,7 @@
                 else if(message.destinationName==='compressor') {
                     if (message.payloadString == 'warn') {
                         document.getElementById('yasuoji').innerHTML = '压缩机异常';
+                        document.getElementById('yasuoji').style.color = 'red';
                     }
                     else if (message.payloadString == 'ok') {
                         document.getElementById('yasuoji').innerHTML = '压缩机正常';
@@ -145,6 +146,7 @@
                 else if(message.destinationName==='refrigerator') {
                     if (message.payloadString == 'warn') {
                         document.getElementById('lengdongji').innerHTML = '冷媒异常';
+                        document.getElementById('lengdongji').style.color = 'red';
                     }
                     else if (message.payloadString == 'ok') {
                         document.getElementById('lengdongji').innerHTML = '冷媒正常';
