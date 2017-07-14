@@ -21,11 +21,15 @@ import mockRoute from './www/mock';
 import initAllLogger from './tools/logger';
 import {BusinessException, catchGlobalError} from './tools/exception';
 
+var cors = require('koa-cors');
+
+
 const logPath = path.join(__dirname, '../../logs/');
 initAllLogger(logPath, global);
 const app = new Koa();
 
 app.proxy = true;
+app.use(cors());
 app.use(gzip());
 app.use(favicon(path.join(__dirname, '../client/favicon.ico')));
 
