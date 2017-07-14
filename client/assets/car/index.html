@@ -32,7 +32,7 @@
                 </div>
                 <div class="status">
                     <div id="yasuoji">压缩机正常</div>
-                    <div id="lengdongji">冷冻机正常</div>
+                    <div id="lengdongji">冷媒正常</div>
                 </div>
 
                 <div class="yibiao">
@@ -144,10 +144,10 @@
                 }
                 else if(message.destinationName==='refrigerator') {
                     if (message.payloadString == 'warn') {
-                        document.getElementById('lengdongji').innerHTML = '冷冻机异常';
+                        document.getElementById('lengdongji').innerHTML = '冷媒异常';
                     }
                     else if (message.payloadString == 'ok') {
-                        document.getElementById('lengdongji').innerHTML = '冷冻机正常';
+                        document.getElementById('lengdongji').innerHTML = '冷媒正常';
                     }
                 }
                 else if(message.destinationName==='esm'&&re.test(message.payloadString)) {
