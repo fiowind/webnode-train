@@ -141,6 +141,7 @@
                     }
                     else if (message.payloadString == 'ok') {
                         document.getElementById('yasuoji').innerHTML = '压缩机正常';
+                        document.getElementById('yasuoji').style.color = '#fff';
                     }
                 }
                 else if(message.destinationName==='refrigerator') {
@@ -150,6 +151,7 @@
                     }
                     else if (message.payloadString == 'ok') {
                         document.getElementById('lengdongji').innerHTML = '冷媒正常';
+                        document.getElementById('lengdongji').style.color = '#fff';
                     }
                 }
                 else if(message.destinationName==='esm'&&re.test(message.payloadString)) {
@@ -173,7 +175,7 @@
                     client.subscribe('PSI02', {qos: 0});
                     client.subscribe('PSI03', {qos: 0});
                     client.subscribe('compressor', {qos: 0});
-                    client.subscribe('refrigerator', {qos: 0});
+                    client.subscribe('refrigerant', {qos: 0});
                     client.subscribe('esm', {qos: 0});
                 },
                 onFailure: () => {alert('fail');}
