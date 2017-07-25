@@ -261,6 +261,22 @@
     right: 25px;
 }
 
+#baby {
+    width: 26px;
+    height: 26px;
+    position: absolute;
+    top: -50px;
+    left: 54px;
+}
+
+#dog {
+    width: 26px;
+    height: 24px;
+    position: absolute;
+    top: -49px;
+    left: 17px;
+}
+
 @media screen and (max-width:600px){
     .screen {
         transform: scale(0.7);

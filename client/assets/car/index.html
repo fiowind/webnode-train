@@ -46,6 +46,8 @@
                     <div class="temp"><span class="guan" id="a0"></span><span class="tmp" id="tmp2">80%</span><span class="text">油量</span></div>
                     <div class="temp"><span class="guan" id="a1"></span><span class="tmp" id="tmp1">30℃</span><span class="text">车内</span></div>
                     <div class="temp"><span class="guan" id="a2"></span><span class="tmp" id="tmp2">38℃</span><span class="text">车外</span></div>
+                    <img src="https://iot2.cdn.bcebos.com/static/dog.png" id="dog" />
+                    <img src="https://iot2.cdn.bcebos.com/static/baby.png" id="baby" />
                     <div id="temperature">OFF</div>
                     <div id="temperature1">ON</div>
                 </div>
@@ -157,6 +159,22 @@
                 else if(message.destinationName==='esm'&&re.test(message.payloadString)) {
                     document.getElementById('esm').innerHTML = `${message.payloadString}km`;
                 }
+                else if(message.destinationName==='dog') {
+                    if (message.payloadString == 'in') {
+                        document.getElementById('dog').style.display = 'block';
+                    }
+                    else if (message.payloadString == 'out') {
+                        document.getElementById('dog').style.display = 'none';
+                    }
+                }
+                else if(message.destinationName==='baby') {
+                    if (message.payloadString == 'in') {
+                        document.getElementById('baby').style.display = 'block';
+                    }
+                    else if (message.payloadString == 'out') {
+                        document.getElementById('baby').style.display = 'block';
+                    }
+                }
             }
             var options = {
                 timeout: 3,
@@ -177,6 +195,8 @@
                     client.subscribe('compressor', {qos: 0});
                     client.subscribe('refrigerant', {qos: 0});
                     client.subscribe('esm', {qos: 0});
+                    client.subscribe('dog', {qos: 0});
+                    client.subscribe('baby', {qos: 0});
                 },
                 onFailure: () => {alert('fail');}
             };
