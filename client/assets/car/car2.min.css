@@ -57,6 +57,7 @@
     text-align: center;
     background-color: #1b2327;
     border-radius: 16px;
+    opacity: .9;
 }
 .bao {
     display: flex;
